@@ -1,3 +1,45 @@
 .application {
   margin-top: 48px;
 }
+
+.code-line {
+  display: flex;
+  flex-direction: row;
+}
+
+.line-number {
+  width: 64px;
+  text-align: center;
+}
+
+.content {
+  display: flex;
+  flex-direction: column;
+}
+
+.code {
+  font-family: "jet-brains-mono";
+  font-weight: 256;
+}
+
+.comments {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.comment {
+  padding: 4px;
+  background-color: var(--comment);
+  border: 1px dashed black;
+  border-radius: 4px;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.comment__controls {
+  display: flex;
+  flex-direction: row;
+  gap: 4px;
+}
