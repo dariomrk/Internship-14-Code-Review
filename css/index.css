@@ -1,0 +1,14 @@
+@import url("./variables.css");
+@import url("./fonts.css");
+@import url("./utilities.css");
+@import url("./navigation.css");
+@import url("./application.css");
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  font-family: "montserrat";
+  font-size: 16px;
+  color: var(--text);
+}

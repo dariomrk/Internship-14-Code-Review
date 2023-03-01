@@ -1,0 +1,17 @@
+.navigation {
+  width: 100vw;
+  height: 48px;
+  background-color: var(--secondary-bg);
+  box-shadow: var(--box-shadow);
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 1;
+  display: flex;
+  align-items: center;
+}
+
+.navigation__title {
+  margin-left: 16px;
+  color: var(--accent);
+}

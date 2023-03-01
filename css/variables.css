@@ -1,0 +1,9 @@
+:root {
+  --accent: #447cec;
+  --accent-red: #da4444;
+  --accent-green: #17df82;
+  --primary-bg: #ffffff;
+  --secondary-bg: #dadada;
+  --text: #202020;
+  --box-shadow: 1.4px 2.7px 2.7px hsla(0, 0%, 0%, 0.276);
+}

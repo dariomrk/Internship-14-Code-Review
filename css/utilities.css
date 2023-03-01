@@ -1,0 +1,27 @@
+.button {
+  width: fit-content;
+  height: 36px;
+  background-color: var(--secondary-bg);
+  border-radius: 4px;
+  border: none;
+  padding: 8px;
+  font-weight: bold;
+}
+.button:hover {
+  background-color: var(--accent);
+  color: var(--primary-bg);
+}
+.danger {
+  background-color: var(--accent-red) !important;
+}
+.accept {
+  background-color: var(--accent-green) !important;
+}
+
+.chip {
+  width: fit-content;
+  height: 36px;
+  padding: 8px;
+  border-radius: 4px;
+  background-color: var(--secondary-bg);
+}
