@@ -34,3 +34,7 @@
   background-color: var(--accent);
   margin-right: 8px;
 }
+
+.hidden {
+  display: none !important;
+}

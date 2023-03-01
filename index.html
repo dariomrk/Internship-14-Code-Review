@@ -12,6 +12,7 @@
       <h1 class="navigation__title">Code review</h1>
     </nav>
     <section class="application">
+      <!-- SAMPLE CODE BLOCK -->
       <!-- SAMPLE CODE LINE -->
       <div class="code-line">
         <p class="line-number selected">1234.</p>
@@ -48,6 +49,43 @@
         </div>
       </div>
       <!-- END SAMPLE CODE LINE -->
+      <!-- SAMPLE CODE LINE -->
+      <div class="code-line">
+        <p class="line-number">1234.</p>
+        <div class="content">
+          <pre><code class="code">const hello = "Hello world!";</code></pre>
+          <div class="comments hidden">
+            <!-- SAMPLE LOADED COMMENT -->
+            <div class="comment">
+              <p>This is a comment</p>
+              <div class="comment__controls">
+                <button class="button accept">Like</button>
+                <!-- <button class="button danger">Unlike</button> -->
+                <button class="button danger">Delete</button>
+                <p class="chip comment__created-at">00:00 00/00/00</p>
+              </div>
+            </div>
+            <!-- END SAMPLE LOADED COMMENT -->
+            <!-- SAMPLE NEW COMMENT -->
+            <div class="comment">
+              <input
+                type="text"
+                name="comment"
+                id="1234"
+                class="chip"
+                placeholder="New comment..."
+              />
+              <div class="comment__controls">
+                <button class="button">Save</button>
+                <button class="button accept">Send</button>
+              </div>
+            </div>
+            <!-- END SAMPLE NEW COMMENT -->
+          </div>
+        </div>
+      </div>
+      <!-- END SAMPLE CODE LINE -->
+      <!-- SAMPLE CODE BLOCK -->
     </section>
   </body>
   <script type="module" src="./js/index.js"></script>
