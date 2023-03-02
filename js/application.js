@@ -1,5 +1,6 @@
 import { toggleClass } from "./document";
 import { getCommentsSelector, getLineNumberSelector } from "./selectors";
+import { getHeaders, getKey, getUrl } from "./utils";
 
 export const toggleCommentsVisibility = line => {
   toggleClass(getCommentsSelector(line), "hidden");
@@ -44,3 +45,19 @@ export class CommentData {
     });
   }
 }
+
+/**
+ * Get the code from the server.
+ * @returns {string} code
+ */
+export const getCode = async () => {
+  const response = await fetch(await getUrl("/code"), {
+    headers: await getHeaders()
+  });
+
+  if (!response.ok) {
+    throw new Error(response);
+  }
+
+  return (await response.json()).code;
+};
