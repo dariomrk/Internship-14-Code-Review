@@ -26,10 +26,12 @@ export const generateHtmlElement = html => {
  * @returns {Element} button HTML element.
  */
 export const generateButtonElement = (displayText, callback, metadata, buttonType = "") => {
-  const markup = `<button>${displayText}</button>`;
+  const markup = `<button class="button">${displayText}</button>`;
   const button = generateHtmlElement(markup);
 
-  button.classList.add(buttonType);
+  if (buttonType !== "") {
+    button.classList.add(buttonType);
+  }
   button.addEventListener("onclick", e => callback(e, metadata));
   return button;
 };
