@@ -14,13 +14,13 @@
     <section class="application">
       <!-- SAMPLE CODE BLOCK -->
       <!-- SAMPLE CODE LINE -->
-      <div class="code-line">
+      <div class="code-line" id="line-ID">
         <p class="line-number selected">1234.</p>
         <div class="content">
           <pre><code class="code">const hello = "Hello world!";</code></pre>
           <div class="comments">
             <!-- SAMPLE LOADED COMMENT -->
-            <div class="comment">
+            <div class="comment" id="comment-ID">
               <p>This is a comment</p>
               <div class="comment__controls">
                 <button class="button accept">Like</button>
@@ -30,7 +30,7 @@
             </div>
             <!-- END SAMPLE LOADED COMMENT -->
             <!-- SAMPLE LOADED COMMENT -->
-            <div class="comment">
+            <div class="comment" id="comment-ID">
               <p>This is a liked comment</p>
               <div class="comment__controls">
                 <button class="button danger">Unlike</button>
@@ -40,7 +40,7 @@
             </div>
             <!-- END SAMPLE LOADED COMMENT -->
             <!-- SAMPLE NEW COMMENT -->
-            <div class="comment">
+            <div class="comment" id="comment-new">
               <input
                 type="text"
                 name="comment"
@@ -59,37 +59,12 @@
       </div>
       <!-- END SAMPLE CODE LINE -->
       <!-- SAMPLE CODE LINE -->
-      <div class="code-line">
+      <div class="code-line" id="line-ID">
         <p class="line-number">1234.</p>
         <div class="content">
           <pre><code class="code">const hello = "Hello world!";</code></pre>
           <div class="comments hidden">
-            <!-- SAMPLE LOADED COMMENT -->
-            <div class="comment">
-              <p>This is a comment</p>
-              <div class="comment__controls">
-                <button class="button accept">Like</button>
-                <!-- <button class="button danger">Unlike</button> -->
-                <button class="button danger">Delete</button>
-                <p class="chip comment__created-at">00:00 00/00/00</p>
-              </div>
-            </div>
-            <!-- END SAMPLE LOADED COMMENT -->
-            <!-- SAMPLE NEW COMMENT -->
-            <div class="comment">
-              <input
-                type="text"
-                name="comment"
-                id="1234"
-                class="chip"
-                placeholder="New comment..."
-              />
-              <div class="comment__controls">
-                <button class="button">Save</button>
-                <button class="button accept">Send</button>
-              </div>
-            </div>
-            <!-- END SAMPLE NEW COMMENT -->
+            <!-- COMMENTS -->
           </div>
         </div>
       </div>
