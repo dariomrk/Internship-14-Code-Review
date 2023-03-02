@@ -29,6 +29,7 @@
 }
 
 .comment {
+  width: fit-content;
   padding: 4px;
   background-color: var(--comment);
   border: 1px dashed black;
