@@ -63,6 +63,22 @@ export const getCode = async () => {
 };
 
 /**
+ * GET /comments
+ * @returns {Array<CommentData>} array of comments.
+ */
+export const getComments = async () => {
+  const response = await fetch(await getUrl("/comments"), {
+    headers: await getHeaders()
+  });
+
+  if (!response.ok) {
+    throw new Error(response);
+  }
+
+  return (await response.json()).comments;
+};
+
+/**
  * POST /create
  * @param {number} line line number.
  * @param {string} text comment text.
@@ -77,6 +93,10 @@ export const createComment = async (line, text) => {
       text
     })
   });
+
+  if (!response.ok) {
+    throw new Error(response);
+  }
 
   return (await response.json()).comment;
 };
