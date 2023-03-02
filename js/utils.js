@@ -16,3 +16,8 @@ export const getUrl = async route => (await getEnvData()).baseUrl + route;
  * @returns {string} api key.
  */
 export const getKey = async () => (await getEnvData()).apiKey;
+
+export const getHeaders = async () => new Headers({
+  "Content-Type": "application/json",
+  key: await getKey()
+});
