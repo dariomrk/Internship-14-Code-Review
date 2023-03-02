@@ -117,3 +117,23 @@ export const createComment = async (line, text) => {
 
   return (await response.json()).comment;
 };
+
+/**
+ * PUT /update-is-liked/:id
+ * @param {number} id comment id.
+ * @param {boolean} isLiked comment like status.
+ * @returns {void}
+ */
+export const updateIsLiked = async (id, isLiked) => {
+  const response = await fetch(await getUrl(`/update-is-liked/${id}`), {
+    method: "PUT",
+    headers: await getHeaders(),
+    body: JSON.stringify({
+      isLiked
+    })
+  });
+
+  if (!response.ok) {
+    throw new Error(response);
+  }
+};
