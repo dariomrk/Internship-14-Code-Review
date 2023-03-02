@@ -137,3 +137,19 @@ export const updateIsLiked = async (id, isLiked) => {
     throw new Error(response);
   }
 };
+
+/**
+ * DELETE /remove/:id
+ * @param {number} id comment id.
+ * @returns {void}
+ */
+export const removeComment = async id => {
+  const response = await fetch(await getUrl(`/remove/${id}`), {
+    method: "DELETE",
+    headers: await getHeaders()
+  });
+
+  if (!response.ok) {
+    throw new Error(response);
+  }
+};
