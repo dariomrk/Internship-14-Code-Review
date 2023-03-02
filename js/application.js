@@ -79,6 +79,23 @@ export const getComments = async () => {
 };
 
 /**
+ * GET /comments/:id
+ * @param {number} id comment id.
+ * @returns {CommentData} comment object.
+ */
+export const getComment = async id => {
+  const response = await fetch(await getUrl(`/comments/${id}`), {
+    headers: await getHeaders()
+  });
+
+  if (!response.ok) {
+    throw new Error(response);
+  }
+
+  return (await response.json()).comment;
+};
+
+/**
  * POST /create
  * @param {number} line line number.
  * @param {string} text comment text.
