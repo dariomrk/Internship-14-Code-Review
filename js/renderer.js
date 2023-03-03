@@ -14,10 +14,10 @@ import { filterComments } from "./utils";
 export const renderLine = (line, code, serverComments, localComments) => {
   const template =
   `<div class="code-line" id="line-${line}">
-    <p class="line-number selected">${line}</p>
+    <p class="line-number">${line}</p>
     <div class="content">
       <pre><code class="code">${code}</code></pre>
-      <div class="comments">
+      <div class="comments hidden">
       </div>
     </div>
   </div>`;
