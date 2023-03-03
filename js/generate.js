@@ -161,7 +161,7 @@ export const generateNewComment = (line, saveCallback, sendCallback) => {
   const sendButton = generateButtonElement(
     "Send",
     sendCallback,
-    new CommentData(line, line, null, null, null),
+    new CommentData(null, line, null, null, null),
     "accept"
   );
 

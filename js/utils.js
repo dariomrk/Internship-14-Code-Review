@@ -30,3 +30,8 @@ export const getHeaders = async () => new Headers({
  */
 export const filterComments = (line, comments) =>
   comments.filter(comment => comment.line === line);
+
+export const reloadRequired = () => {
+  // eslint-disable-next-line no-alert
+  alert("Comment will be visible after a page reload.");
+};

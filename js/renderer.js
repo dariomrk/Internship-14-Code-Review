@@ -1,7 +1,7 @@
-import { attachCommentToggler, CommentData, removeComment, updateIsLiked } from "./application";
-import { getApplication } from "./selectors";
+import { attachCommentToggler, CommentData, removeComment, updateIsLiked, createComment, getComments } from "./application";
+import { getApplication, getCommentSelector, getCommentsSelector } from "./selectors";
 import { generateHtmlElement, generateLocalComment, generateNewComment, generateServerComment } from "./generate";
-import { filterComments } from "./utils";
+import { filterComments, reloadRequired } from "./utils";
 
 /**
  * Renders a code line along with all of the comments.
@@ -39,8 +39,7 @@ export const renderLine = (line, code, serverComments = null, localComments = nu
 
         // deleteCallback
         removeComment(commentData.id);
-
-      // TODO update HTML
+        document.querySelector(getCommentSelector(commentData.id)).remove();
       }));
 
     generatedServerComments.forEach(comment => generatedLine.querySelector(".comments").appendChild(comment));
@@ -61,15 +60,17 @@ export const renderLine = (line, code, serverComments = null, localComments = nu
   generatedLine.querySelector(".comments").appendChild(generateNewComment(line,
     (_, commentData) => {
 
-      // save callback
-      // TODO update HTMl
+      // saveCallback
       // TODO save to localstorage
+      reloadRequired();
     },
     (_, commentData) => {
 
-      // send callback
-      // TODO update HTML
-      // TODO save to server
+      // sendCallback
+      const content = document.querySelector(`#comment-new__input-${commentData.line}`).value;
+
+      createComment(commentData.line, content);
+      reloadRequired();
     }));
 
   getApplication().appendChild(generatedLine);
