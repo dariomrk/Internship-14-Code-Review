@@ -37,9 +37,6 @@ export const getCommentsSelector = line => `${getLineSelector(line)} > .content 
 export const getCommentControls = commentId => {
   const comment = getTarget(`${getCommentSelector(commentId)} > .comment__controls`);
 
-  // TODO remove
-  console.log(comment);
-
   return [...comment.children];
 };
 
