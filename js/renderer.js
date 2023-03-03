@@ -11,7 +11,7 @@ import { filterComments } from "./utils";
  * @param {Array<CommentData>} localComments local comments.
  * @returns {void}
  */
-export const renderLine = (line, code, serverComments, localComments) => {
+export const renderLine = (line, code, serverComments = null, localComments = null) => {
   const template =
   `<div class="code-line" id="line-${line}">
     <p class="line-number">${line}</p>
@@ -23,7 +23,7 @@ export const renderLine = (line, code, serverComments, localComments) => {
   </div>`;
   const generatedLine = generateHtmlElement(template);
 
-  if (serverComments !== undefined && serverComments.length !== 0) {
+  if (serverComments !== null && serverComments.length !== 0) {
     const filteredServerComments = filterComments(line, serverComments);
     const generatedServerComments = filteredServerComments.map(comment => generateServerComment(comment,
       (_, commentData) => {
@@ -44,7 +44,7 @@ export const renderLine = (line, code, serverComments, localComments) => {
     generatedServerComments.forEach(comment => generatedLine.querySelector(".comments").appendChild(comment));
   }
 
-  if (localComments !== undefined && localComments.length !== 0) {
+  if (localComments !== null && localComments.length !== 0) {
     const filteredLocalComments = filterComments(line, localComments);
     const generatedLocalComments = filteredLocalComments.map(comment => generateLocalComment(comment,
       (_, commentData) => {
