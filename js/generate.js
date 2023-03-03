@@ -44,15 +44,15 @@ export const generateButtonElement = (displayText, callback, metadata, buttonTyp
 export const generateDateTimeChip = dateTime => generateHtmlElement(`<p class="chip comment__created-at">${dateTime}</p>`);
 
 /**
- * Generates a HTML comment element from previous data.
+ * Generates a HTML comment element from server data.
  * @param {CommentData} commentObject loaded comment.
- * @param {(e: Event, metadata: CommentData) => void} likeUnlikeCallback triggers when the like button is clicked.
- * @param {(e: Event, metadata: CommentData) => void} deleteCallback trigger when the delete button is clicked.
+ * @param {(e: Event, metadata: CommentData) => void} likeUnlikeCallback called on like or unlike.
+ * @param {(e: Event, metadata: CommentData) => void} deleteCallback called on delete.
  * @returns {Element} comment HTML element.
  */
-export const generateLoadedComment = (commentObject, likeUnlikeCallback, deleteCallback) => {
+export const generateServerComment = (commentObject, likeUnlikeCallback, deleteCallback) => {
   const markup = `
-    <div class="comment" id="comment-ID">
+    <div class="comment" id="comment-${commentObject.id}">
       <p>${commentObject.text}</p>
       <div class="comment__controls">
       </div>
@@ -81,6 +81,34 @@ export const generateLoadedComment = (commentObject, likeUnlikeCallback, deleteC
   controls.appendChild(likeButton);
   controls.appendChild(deleteButton);
   controls.appendChild(dateTimeChip);
+
+  return element;
+};
+
+/** Generates a HTML comment element from the local data.
+ * @param {CommentData} commentObject loaded comment.
+ * @param {(e: Event, metadata: CommentData) => void} deleteCallback called on delete.
+ * @returns {Element} comment HTML element.
+ */
+export const generateLocalComment = (commentObject, deleteCallback) => {
+  const markup = `
+    <div class="comment" id="comment-${commentObject.id}">
+      <p>${commentObject.text}</p>
+      <div class="comment__controls">
+      </div>
+    </div>`;
+
+  const element = generateHtmlElement(markup);
+  const controls = element.querySelector(".comment__controls");
+
+  const deleteButton = generateButtonElement(
+    "Delete",
+    deleteCallback,
+    commentObject,
+    "danger"
+  );
+
+  controls.appendChild(deleteButton);
 
   return element;
 };
