@@ -36,12 +36,12 @@ export class CommentData {
    * @param {boolean} isLiked is liked?
    * @param {string} createdAt standard datetime format.
    */
-  constructor(id, line, text, isLiked, createdAt) {
+  constructor(id, line, text, isLiked, createdAt = null) {
     this.id = id;
     this.line = line;
     this.text = text;
     this.isLiked = isLiked;
-    this.createdAt = createdAt;
+    this.createdAt = createdAt ?? (new Date()).toISOString();
   }
 
   /**
