@@ -93,6 +93,11 @@ export const renderLine = (line, code, serverComments = null, localComments = nu
       // sendCallback
       const content = document.querySelector(`#comment-new__input-${commentData.line}`).value;
 
+      if (content.trim() === "") {
+        // eslint-disable-next-line no-alert
+        alert("Empty comments are not allowed.");
+        return;
+      }
       createComment(commentData.line, content);
       reloadRequired();
     }));
