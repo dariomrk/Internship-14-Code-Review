@@ -1,4 +1,4 @@
-import { attachCommentToggler, CommentData, removeComment, updateIsLiked, createComment, getComments } from "./application";
+import { attachCommentToggler, CommentData, removeComment, updateIsLiked, createComment, getComments, removeLocalComment, storeNewLocalComment, generateLocalCommentId } from "./application";
 import { getApplication, getCommentControls, getCommentSelector, getCommentsSelector } from "./selectors";
 import { generateHtmlElement, generateLocalComment, generateNewComment, generateServerComment } from "./generate";
 import { filterComments, reloadRequired } from "./utils";
@@ -62,8 +62,9 @@ export const renderLine = (line, code, serverComments = null, localComments = nu
     const generatedLocalComments = filteredLocalComments.map(comment => generateLocalComment(comment,
       (_, commentData) => {
 
-      // TODO Update HTML
-      // TODO Implement removal of local comments.
+        // deleteCallback
+        removeLocalComment(commentData.id);
+        document.querySelector(getCommentSelector(commentData.id)).remove();
       }));
 
     generatedLocalComments.forEach(comment => generatedLine.querySelector(".comments").appendChild(comment));
@@ -73,7 +74,14 @@ export const renderLine = (line, code, serverComments = null, localComments = nu
     (_, commentData) => {
 
       // saveCallback
-      // TODO save to localstorage
+
+      const content = document.querySelector(`#comment-new__input-${commentData.line}`).value;
+
+      storeNewLocalComment(new CommentData(
+        generateLocalCommentId(),
+        commentData.line,
+        content
+      ));
       reloadRequired();
     },
     (_, commentData) => {
