@@ -1,7 +1,7 @@
-import { attachCommentToggler, CommentData, removeComment, updateIsLiked, createComment, removeLocalComment, storeNewLocalComment, generateLocalCommentId } from "./application";
-import { getApplication, getCommentControls, getCommentSelector } from "./selectors";
-import { generateHtmlElement, generateLocalComment, generateNewComment, generateServerComment } from "./generate";
-import { filterComments, reloadRequired } from "./utils";
+import { attachCommentToggler, CommentData, removeComment, updateIsLiked, createComment, removeLocalComment, storeNewLocalComment, generateLocalCommentId } from "./application.js";
+import { getApplication, getCommentControls, getCommentSelector } from "./selectors.js";
+import { generateHtmlElement, generateLocalComment, generateNewComment, generateServerComment } from "./generate.js";
+import { filterComments, reloadRequired } from "./utils.js";
 
 /**
  * Renders a code line along with all of the comments.

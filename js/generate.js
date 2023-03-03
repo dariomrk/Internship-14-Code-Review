@@ -1,4 +1,4 @@
-import { CommentData } from "./application";
+import { CommentData } from "./application.js";
 
 /**
  * Generates a HTML element from the input string.

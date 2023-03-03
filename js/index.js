@@ -1,5 +1,5 @@
-import { getCode, getComments, loadLocalComments } from "./application";
-import { renderLine } from "./renderer";
+import { getCode, getComments, loadLocalComments } from "./application.js";
+import { renderLine } from "./renderer.js";
 
 (async () => {
   const codeLines = (await getCode()).split("\n");

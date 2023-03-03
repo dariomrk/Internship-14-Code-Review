@@ -1,4 +1,4 @@
-import { getTarget } from "./document";
+import { getTarget } from "./document.js";
 
 /**
  * Returns the line selector.

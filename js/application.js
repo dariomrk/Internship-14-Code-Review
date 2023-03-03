@@ -1,6 +1,6 @@
-import { toggleClass } from "./document";
-import { getCommentsSelector, getLineNumberSelector } from "./selectors";
-import { getHeaders, getUrl } from "./utils";
+import { toggleClass } from "./document.js";
+import { getCommentsSelector, getLineNumberSelector } from "./selectors.js";
+import { getHeaders, getUrl } from "./utils.js";
 
 export const toggleCommentsVisibility = line => {
   toggleClass(getCommentsSelector(line), "hidden");
