@@ -2,7 +2,16 @@
  * Gets the environment data.
  * @returns {Promise<{baseUrl: string, apiKey: string}>} Env data.
  */
-export const getEnvData = async () => await (await fetch("../env.json")).json();
+// eslint-disable-next-line consistent-return
+export const getEnvData = async () => {
+  try {
+    return await (await fetch("../env.json")).json();
+  // eslint-disable-next-line no-unused-vars
+  } catch (_) {
+    // eslint-disable-next-line no-console
+    console.warn("Please read the README.md in the project root.");
+  }
+};
 
 /**
  * Gets the full url.
