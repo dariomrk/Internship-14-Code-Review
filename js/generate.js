@@ -61,6 +61,10 @@ export const generateServerComment = (commentObject, likeUnlikeCallback, deleteC
   const element = generateHtmlElement(markup);
   const controls = element.querySelector(".comment__controls");
 
+  element.addEventListener("click", e => {
+    e.stopPropagation();
+  });
+
   // #region generating comment controls
   const likeButton = generateButtonElement(
     commentObject.isLiked ? "Unlike" : "Like",
@@ -101,6 +105,10 @@ export const generateLocalComment = (commentObject, deleteCallback) => {
   const element = generateHtmlElement(markup);
   const controls = element.querySelector(".comment__controls");
 
+  element.addEventListener("click", e => {
+    e.stopPropagation();
+  });
+
   const deleteButton = generateButtonElement(
     "Delete",
     deleteCallback,
@@ -139,6 +147,10 @@ export const generateNewComment = (line, saveCallback, sendCallback) => {
 
   const element = generateHtmlElement(markup);
   const controls = element.querySelector(".comment__controls");
+
+  element.addEventListener("click", e => {
+    e.stopPropagation();
+  });
 
   const saveButton = generateButtonElement(
     "Save",

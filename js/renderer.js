@@ -28,16 +28,14 @@ export const renderLine = (line, code, serverComments = null, localComments = nu
   if (serverComments !== null && serverComments.length !== 0) {
     const filteredServerComments = filterComments(line, serverComments);
     const generatedServerComments = filteredServerComments.map(comment => generateServerComment(comment,
-      (e, commentData) => {
-        e.stopPropagation();
+      (_, commentData) => {
 
         // likeUnlikeCallback
         updateIsLiked(commentData.id, !commentData.isLiked);
 
       // TODO update HTML
       },
-      (e, commentData) => {
-        e.stopPropagation();
+      (_, commentData) => {
 
         // deleteCallback
         removeComment(commentData.id);
@@ -61,15 +59,13 @@ export const renderLine = (line, code, serverComments = null, localComments = nu
   }
 
   generatedLine.querySelector(".comments").appendChild(generateNewComment(line,
-    (e, commentData) => {
-      e.stopPropagation();
+    (_, commentData) => {
 
       // save callback
       // TODO update HTMl
       // TODO save to localstorage
     },
-    (e, commentData) => {
-      e.stopPropagation();
+    (_, commentData) => {
 
       // send callback
       // TODO update HTML
