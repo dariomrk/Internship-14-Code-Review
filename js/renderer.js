@@ -1,6 +1,7 @@
-import { CommentData, filterComments, removeComment, updateIsLiked } from "./application";
+import { CommentData, removeComment, updateIsLiked } from "./application";
 import { getApplication } from "./document";
 import { generateHtmlElement, generateLoadedComment } from "./generate";
+import { filterComments } from "./utils";
 
 /**
  * Renders a code line along with all of the comments.

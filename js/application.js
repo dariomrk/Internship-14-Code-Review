@@ -153,12 +153,3 @@ export const removeComment = async id => {
     throw new Error(response);
   }
 };
-
-/**
- * Filters by line.
- * @param {number} line filter comments for this line.
- * @param {Array<CommentData>} comments loaded comments.
- * @returns {Array<CommentData>} comments that belong to the given line.
- */
-export const filterComments = (line, comments) =>
-  comments.filter(comment => comment.line === line);
