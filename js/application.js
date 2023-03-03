@@ -101,6 +101,11 @@ export const getComment = async id => {
  * @returns {CommentData} comment object.
  */
 export const createComment = async (line, text) => {
+  if (text.trim() === "") {
+    // eslint-disable-next-line no-alert
+    alert("Empty comments are not allowed.");
+    return;
+  }
   const response = await fetch(await getUrl("/create"), {
     method: "POST",
     headers: await getHeaders(),
@@ -114,6 +119,7 @@ export const createComment = async (line, text) => {
     throw new Error(response);
   }
 
+  // eslint-disable-next-line consistent-return
   return (await response.json()).comment;
 };
 
@@ -164,7 +170,12 @@ export const loadLocalComments = () => JSON.parse(localStorage.getItem("localCom
  * @param {CommentData} newComment new comment.
  * @returns {void}
  */
-export const storeNewLocalComment = newComment => localStorage.setItem("localComments", JSON.stringify([...loadLocalComments(), newComment]));
+export const storeNewLocalComment = newComment => {
+  if (newComment.text.trim() === "") {
+    return;
+  }
+  localStorage.setItem("localComments", JSON.stringify([...loadLocalComments(), newComment]));
+};
 
 /**
  * Removes the comment from localStorage.

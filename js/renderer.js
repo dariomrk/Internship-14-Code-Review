@@ -1,8 +1,7 @@
-import { attachCommentToggler, CommentData, removeComment, updateIsLiked, createComment, getComments, removeLocalComment, storeNewLocalComment, generateLocalCommentId } from "./application";
-import { getApplication, getCommentControls, getCommentSelector, getCommentsSelector } from "./selectors";
+import { attachCommentToggler, CommentData, removeComment, updateIsLiked, createComment, removeLocalComment, storeNewLocalComment, generateLocalCommentId } from "./application";
+import { getApplication, getCommentControls, getCommentSelector } from "./selectors";
 import { generateHtmlElement, generateLocalComment, generateNewComment, generateServerComment } from "./generate";
 import { filterComments, reloadRequired } from "./utils";
-import { getTarget } from "./document";
 
 /**
  * Renders a code line along with all of the comments.
@@ -77,6 +76,11 @@ export const renderLine = (line, code, serverComments = null, localComments = nu
 
       const content = document.querySelector(`#comment-new__input-${commentData.line}`).value;
 
+      if (content.trim() === "") {
+        // eslint-disable-next-line no-alert
+        alert("Empty comments are not allowed.");
+        return;
+      }
       storeNewLocalComment(new CommentData(
         generateLocalCommentId(),
         commentData.line,
