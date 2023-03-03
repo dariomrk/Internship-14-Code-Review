@@ -1,7 +1,8 @@
 import { attachCommentToggler, CommentData, removeComment, updateIsLiked, createComment, getComments } from "./application";
-import { getApplication, getCommentSelector, getCommentsSelector } from "./selectors";
+import { getApplication, getCommentControls, getCommentSelector, getCommentsSelector } from "./selectors";
 import { generateHtmlElement, generateLocalComment, generateNewComment, generateServerComment } from "./generate";
 import { filterComments, reloadRequired } from "./utils";
+import { getTarget } from "./document";
 
 /**
  * Renders a code line along with all of the comments.
@@ -33,7 +34,18 @@ export const renderLine = (line, code, serverComments = null, localComments = nu
         // likeUnlikeCallback
         updateIsLiked(commentData.id, !commentData.isLiked);
 
-      // TODO update HTML
+        const likeButton = getCommentControls(commentData.id)[0];
+
+        if (likeButton.classList.contains("accept")) {
+          likeButton.classList.remove("accept");
+          likeButton.classList.add("danger");
+          likeButton.innerHTML = "Unlike";
+        } else {
+          likeButton.classList.remove("danger");
+          likeButton.classList.add("accept");
+          likeButton.innerHTML = "Like";
+        }
+
       },
       (_, commentData) => {
 

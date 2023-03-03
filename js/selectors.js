@@ -26,6 +26,7 @@ export const getCommentSelector = commentId => `#comment-${commentId}`;
  * @param {number} line line number.
  * @returns {string} comments selector.
  */
+// #comment-160 > div
 export const getCommentsSelector = line => `${getLineSelector(line)} > .content > .comments`;
 
 /**
@@ -34,7 +35,10 @@ export const getCommentsSelector = line => `${getLineSelector(line)} > .content 
  * @returns {Array<Element>} comment controls.
  */
 export const getCommentControls = commentId => {
-  const comment = getTarget(getCommentSelector(commentId));
+  const comment = getTarget(`${getCommentSelector(commentId)} > .comment__controls`);
+
+  // TODO remove
+  console.log(comment);
 
   return [...comment.children];
 };
