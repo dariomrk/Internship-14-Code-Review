@@ -22,31 +22,39 @@ export const renderLine = (line, code, serverComments, localComments) => {
     </div>
   </div>`;
   const generatedLine = generateHtmlElement(template);
-  const filteredServerComments = filterComments(line, serverComments);
-  const filteredLocalComments = filterComments(line, localComments);
-  const generatedServerComments = filteredServerComments.map(comment => generateServerComment(comment,
-    (_, commentData) => {
 
-      // likeUnlikeCallback
-      updateIsLiked(commentData.id, !commentData.isLiked);
+  if (serverComments !== undefined && serverComments.length !== 0) {
+    const filteredServerComments = filterComments(line, serverComments);
+    const generatedServerComments = filteredServerComments.map(comment => generateServerComment(comment,
+      (_, commentData) => {
 
-      // TODO Update HTML
-    },
-    (_, commentData) => {
-
-      // deleteCallback
-      removeComment(commentData.id);
+        // likeUnlikeCallback
+        updateIsLiked(commentData.id, !commentData.isLiked);
 
       // TODO Update HTML
-    }));
-  const generatedLocalComments = filteredLocalComments.map(comment => generateLocalComment(comment,
-    (_, commentData) => {
+      },
+      (_, commentData) => {
+
+        // deleteCallback
+        removeComment(commentData.id);
+
+      // TODO Update HTML
+      }));
+
+    generatedServerComments.forEach(comment => generatedLine.querySelector(".comments").appendChild(comment));
+  }
+
+  if (localComments !== undefined && localComments.length !== 0) {
+    const filteredLocalComments = filterComments(line, localComments);
+    const generatedLocalComments = filteredLocalComments.map(comment => generateLocalComment(comment,
+      (_, commentData) => {
 
       // TODO Update HTML
       // TODO Implement removal of local comments.
-    }));
+      }));
 
-  generatedServerComments.forEach(comment => generatedLine.querySelector(".comments").appendChild(comment));
-  generatedLocalComments.forEach(comment => generatedLine.querySelector(".comments").appendChild(comment));
+    generatedLocalComments.forEach(comment => generatedLine.querySelector(".comments").appendChild(comment));
+  }
+
   getApplication().appendChild(generatedLine);
 };
