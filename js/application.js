@@ -11,6 +11,19 @@ export const toggleSelectedLine = line => {
 };
 
 /**
+ * Attaches a comment toggler.
+ * @param {number} lineNumber line number.
+ * @param {Element} codeLineElement code line HTML element.
+ * @returns {void}
+ */
+export const attachCommentToggler = (lineNumber, codeLineElement) => {
+  codeLineElement.addEventListener("click", () => {
+    toggleCommentsVisibility(lineNumber);
+    toggleSelectedLine(lineNumber);
+  });
+};
+
+/**
  * Encapsulates all comment data.
  */
 export class CommentData {

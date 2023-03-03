@@ -1,6 +1,6 @@
-import { CommentData, removeComment, updateIsLiked } from "./application";
-import { getApplication } from "./document";
-import { generateHtmlElement, generateLocalComment, generateServerComment } from "./generate";
+import { attachCommentToggler, CommentData, removeComment, updateIsLiked } from "./application";
+import { getApplication } from "./selectors";
+import { generateHtmlElement, generateLocalComment, generateNewComment, generateServerComment } from "./generate";
 import { filterComments } from "./utils";
 
 /**
@@ -23,22 +23,26 @@ export const renderLine = (line, code, serverComments = null, localComments = nu
   </div>`;
   const generatedLine = generateHtmlElement(template);
 
+  attachCommentToggler(line, generatedLine);
+
   if (serverComments !== null && serverComments.length !== 0) {
     const filteredServerComments = filterComments(line, serverComments);
     const generatedServerComments = filteredServerComments.map(comment => generateServerComment(comment,
-      (_, commentData) => {
+      (e, commentData) => {
+        e.stopPropagation();
 
         // likeUnlikeCallback
         updateIsLiked(commentData.id, !commentData.isLiked);
 
-      // TODO Update HTML
+      // TODO update HTML
       },
-      (_, commentData) => {
+      (e, commentData) => {
+        e.stopPropagation();
 
         // deleteCallback
         removeComment(commentData.id);
 
-      // TODO Update HTML
+      // TODO update HTML
       }));
 
     generatedServerComments.forEach(comment => generatedLine.querySelector(".comments").appendChild(comment));
@@ -55,6 +59,22 @@ export const renderLine = (line, code, serverComments = null, localComments = nu
 
     generatedLocalComments.forEach(comment => generatedLine.querySelector(".comments").appendChild(comment));
   }
+
+  generatedLine.querySelector(".comments").appendChild(generateNewComment(line,
+    (e, commentData) => {
+      e.stopPropagation();
+
+      // save callback
+      // TODO update HTMl
+      // TODO save to localstorage
+    },
+    (e, commentData) => {
+      e.stopPropagation();
+
+      // send callback
+      // TODO update HTML
+      // TODO save to server
+    }));
 
   getApplication().appendChild(generatedLine);
 };

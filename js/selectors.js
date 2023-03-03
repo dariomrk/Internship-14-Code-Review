@@ -38,3 +38,9 @@ export const getCommentControls = commentId => {
 
   return [...comment.children];
 };
+
+/**
+ * Get the application element.
+ * @returns {Element} application HTML element.
+ */
+export const getApplication = () => getTarget(".application");

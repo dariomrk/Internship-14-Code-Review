@@ -41,9 +41,3 @@ export const toggleClass = (targetSelector, className) => {
     target.classList.add(className);
   }
 };
-
-/**
- * Get the application element.
- * @returns {Element} application HTML element.
- */
-export const getApplication = () => getTarget(".application");

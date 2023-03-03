@@ -32,7 +32,7 @@ export const generateButtonElement = (displayText, callback, metadata, buttonTyp
   if (buttonType !== "") {
     button.classList.add(buttonType);
   }
-  button.addEventListener("onclick", e => callback(e, metadata));
+  button.addEventListener("click", e => callback(e, metadata));
   return button;
 };
 
@@ -125,11 +125,11 @@ export const generateLocalComment = (commentObject, deleteCallback) => {
  */
 export const generateNewComment = (line, saveCallback, sendCallback) => {
   const markup = `
-    <div class="comment" id="comment-new">
+    <div class="comment" id="comment-new-${line}">
       <input
       type="text"
       name="comment"
-      id="${line}"
+      id="comment-new__input-${line}"
       class="chip"
       placeholder="New comment..."
       />
