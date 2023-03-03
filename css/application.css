@@ -29,14 +29,37 @@
 }
 
 .comment {
+  background-color: var(--secondary-bg);
   width: fit-content;
   padding: 4px;
-  background-color: var(--comment);
-  border: 1px dashed black;
   border-radius: 4px;
   display: flex;
   flex-direction: column;
   gap: 4px;
+}
+
+.server {
+  background: repeating-linear-gradient(
+    45deg,
+    #222,
+    #222 10px,
+    #333 10px,
+    #333 20px
+  );
+}
+
+.comment > p {
+  color: var(--primary-bg);
+}
+
+.local {
+  background: repeating-linear-gradient(
+    45deg,
+    #555,
+    #555 10px,
+    #888 10px,
+    #888 20px
+  );
 }
 
 .comment__controls {
