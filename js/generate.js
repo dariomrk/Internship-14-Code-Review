@@ -107,8 +107,10 @@ export const generateLocalComment = (commentObject, deleteCallback) => {
     commentObject,
     "danger"
   );
+  const dateTimeChip = generateDateTimeChip(commentObject.createdAt);
 
   controls.appendChild(deleteButton);
+  controls.appendChild(dateTimeChip);
 
   return element;
 };

@@ -1,6 +1,6 @@
 import { CommentData, removeComment, updateIsLiked } from "./application";
 import { getApplication } from "./document";
-import { generateHtmlElement, generateLoadedComment } from "./generate";
+import { generateHtmlElement, generateServerComment } from "./generate";
 import { filterComments } from "./utils";
 
 /**
@@ -22,18 +22,18 @@ export const renderLine = (line, code, comments) => {
   </div>`;
   const generatedLine = generateHtmlElement(template);
   const filteredComments = filterComments(line, comments);
-  const generatedComments = filteredComments.map(comment => generateLoadedComment(comment,
-    (e, commentData) => {
+  const generatedServerComments = filteredComments.map(comment => generateServerComment(comment,
+    (_, commentData) => {
 
       // likeUnlikeCallback
       updateIsLiked(commentData.id, !commentData.isLiked);
     },
-    (e, commentData) => {
+    (_, commentData) => {
 
       // deleteCallback
       removeComment(commentData.id);
     }));
 
-  generatedComments.forEach(comment => generatedLine.querySelector(".comments").appendChild(comment));
+  generatedServerComments.forEach(comment => generatedLine.querySelector(".comments").appendChild(comment));
   getApplication().appendChild(generatedLine);
 };
