@@ -41,3 +41,5 @@ export const toggleClass = (targetSelector, className) => {
     target.classList.add(className);
   }
 };
+
+export const getApplication = () => getTarget(".application");

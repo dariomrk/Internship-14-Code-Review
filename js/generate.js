@@ -71,7 +71,8 @@ export const generateLoadedComment = (commentObject, likeUnlikeCallback, deleteC
   const deleteButton = generateButtonElement(
     "Delete",
     deleteCallback,
-    commentObject
+    commentObject,
+    "danger"
   );
   const dateTimeChip = generateDateTimeChip(commentObject.createdAt);
 
