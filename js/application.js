@@ -33,29 +33,15 @@ export class CommentData {
    * @param {number} id comment id.
    * @param {number} line code line.
    * @param {string} text comment.
-   * @param {boolean} isLiked is liked?
-   * @param {string} createdAt standard datetime format.
+   * @param {boolean | null} isLiked is liked?
+   * @param {string | null} createdAt standard datetime format.
    */
-  constructor(id, line, text, isLiked, createdAt = null) {
+  constructor(id, line, text, isLiked = null, createdAt = null) {
     this.id = id;
     this.line = line;
     this.text = text;
     this.isLiked = isLiked;
     this.createdAt = createdAt ?? (new Date()).toISOString();
-  }
-
-  /**
-   * Returns the JSON representation of the class instance.
-   * @returns {string} JSON.
-   */
-  toJson() {
-    return JSON.stringify({
-      id: this.id,
-      line: this.line,
-      text: this.text,
-      isLiked: this.isLiked,
-      createdAt: this.createdAt
-    });
   }
 }
 
@@ -166,3 +152,29 @@ export const removeComment = async id => {
     throw new Error(response);
   }
 };
+
+/**
+ * Get comments stored in localStorage.
+ * @returns {Array<CommentData>} locally stored comments.
+ */
+export const loadLocalComments = () => JSON.parse(localStorage.getItem("localComments")) ?? [];
+
+/**
+ * Store new comment to localStorage.
+ * @param {CommentData} newComment new comment.
+ * @returns {void}
+ */
+export const storeNewLocalComment = newComment => localStorage.setItem("localComments", JSON.stringify([...loadLocalComments(), newComment]));
+
+/**
+ * Removes the comment from localStorage.
+ * @param {number} commentId local comment id.
+ * @returns {void}
+ */
+export const removeLocalComment = commentId => localStorage.setItem("localComments", JSON.stringify(loadLocalComments().filter(comment => comment.id !== commentId)));
+
+/**
+ * Generates a valid local comment id (negative integer).
+ * @returns {number} valid local comment id.
+ */
+export const generateLocalCommentId = () => loadLocalComments().length * -1 - 1;
