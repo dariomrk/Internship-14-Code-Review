@@ -52,7 +52,7 @@ export const generateDateTimeChip = dateTime => generateHtmlElement(`<p class="c
  */
 export const generateServerComment = (commentObject, likeUnlikeCallback, deleteCallback) => {
   const markup = `
-    <div class="comment" id="comment-${commentObject.id}">
+    <div class="comment server" id="comment-${commentObject.id}">
       <p>${commentObject.text}</p>
       <div class="comment__controls">
       </div>
@@ -96,7 +96,7 @@ export const generateServerComment = (commentObject, likeUnlikeCallback, deleteC
  */
 export const generateLocalComment = (commentObject, deleteCallback) => {
   const markup = `
-    <div class="comment" id="comment-${commentObject.id}">
+    <div class="comment local" id="comment-${commentObject.id}">
       <p>${commentObject.text}</p>
       <div class="comment__controls">
       </div>
