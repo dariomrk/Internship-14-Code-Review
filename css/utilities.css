@@ -33,6 +33,13 @@
 .selected {
   background-color: var(--accent);
   margin-right: 8px;
+  padding-top: 24px;
+  padding-bottom: 24px;
+}
+
+.selected ~ .content {
+  padding-top: 24px;
+  padding-bottom: 24px;
 }
 
 .hidden {
